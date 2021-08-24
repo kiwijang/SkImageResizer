@@ -58,8 +58,10 @@ namespace SkImageResizer
       List<Task> tasks = new List<Task>();
       foreach (var filePath in allFiles)
       {
+        // 讓縮放圖片過程變非同步
         Task t = Task.Run(() =>
         {
+          // 使用 SkiaSharp 縮放圖片並存到 filePath
           var bitmap = SKBitmap.Decode(filePath);
           var imgPhoto = SKImage.FromBitmap(bitmap);
           var imgName = Path.GetFileNameWithoutExtension(filePath);
